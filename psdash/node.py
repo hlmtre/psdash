@@ -10,6 +10,7 @@ from psdash.log import Logs
 from psdash.helpers import socket_families, socket_types
 from psdash.net import get_interface_addresses, NetIOCounters
 
+from libpyxl.host import Host
 
 logger = logging.getLogger("psdash.node")
 
@@ -84,6 +85,16 @@ class LocalService(object):
 
     def get_memory(self):
         return psutil.virtual_memory()._asdict()
+
+    def get_xen_memory(self):
+        h = Host()
+        # because xl returns memory in GB, we need to make the numbers kB
+        d = {'total':int(h.total_memory)*1024*1024, 
+             'free':int(h.free_memory)*1024*1024,
+             'used':int(h.total_memory)*1024*1024 - int(h.free_memory)*1024*1024, 
+             'percent':float(h.mem_use_percent()), 
+             'available': int(h.free_memory)*1024*1024}
+        return d
 
     def get_swap_space(self):
         sm = psutil.swap_memory()

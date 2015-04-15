@@ -63,6 +63,33 @@
                 </table>
             </div>
         </div>
+        <div class="box xen">
+          <div class="box-header">
+            <span>Xen Host</span>
+                <table class="table">
+                    <tr>
+                        <td class="label-col">Total</td>
+                        <td class="total">{{ xenmemory.total|filesizeformat }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label-col">Available</td>
+                        <td class="available">{{ xenmemory.available|filesizeformat }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label-col">Used <small>(excl. cache &amp; buffers)</small></td>
+                        <td class="used_excl">{{ (xenmemory.total - xenmemory.available)|filesizeformat }} ({{ xenmemory.percent }} %)</td>
+                    </tr>
+                    <tr>
+                        <td class="label-col">Used <small>(incl. cache &amp; buffers)</small></td>
+                        <td class="used_incl">{{ xenmemory.used|filesizeformat }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label-col">Free</td>
+                        <td class="free">{{ xenmemory.free|filesizeformat }}</td>
+                    </tr>
+                </table>
+          </div>
+        </div>
         <div class="box network">
             <div class="box-header">
                 <span>Network</span>

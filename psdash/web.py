@@ -114,6 +114,7 @@ def index():
         'load_avg': sysinfo['load_avg'],
         'num_cpus': sysinfo['num_cpus'],
         'memory': current_service.get_memory(),
+        'xenmemory': current_service.get_xen_memory(),
         'swap': current_service.get_swap_space(),
         'disks': current_service.get_disks(),
         'cpu': current_service.get_cpu(),
